@@ -1,8 +1,9 @@
 import { createElement } from '../render';
+import {html} from '../utils';
 
 function createAddNewEventTemplate() {
   return(
-    `
+    html`
       <form class="event event--edit" action="#" method="post">
         <header class="event__header">
           <div class="event__type-wrapper">

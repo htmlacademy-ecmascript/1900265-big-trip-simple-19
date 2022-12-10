@@ -1,8 +1,9 @@
 import { createElement } from '../render';
+import {html} from '../utils';
 
 function createEventsListTemplate() {
   return (
-    '<ul class="trip-events__list"></ul>'
+    html`<ul class="trip-events__list"></ul>`
   );
 }
 
