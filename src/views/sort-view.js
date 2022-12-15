@@ -6,7 +6,7 @@ export default class SortView extends View {
   constructor() {
     super();
 
-    this.classList.add('trip-sort');
+    this.classList.add('trip-events__trip-sort', 'trip-sort');
   }
 
   /**
