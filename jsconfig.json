@@ -1,10 +1,10 @@
 {
   "include": [
-    "css/**/*"
+    "src/**/*"
   ],
   "compilerOptions": {
     "moduleResolution": "NodeNext",
-    "target": "ESnext",
+    "target": "ESNext",
     "checkJs": true
   }
 }

@@ -13,7 +13,7 @@ import {FilterType, SortType} from './enums';
 import {filterCallbackMap, sortCallbackMap} from './maps';
 
 const BASE = 'https://19.ecmascript.pages.academy/big-trip-simple';
-const AUTH = 'Basic someString13dfgdfg';
+const AUTH = 'Basic someString13';
 /**
  * @type {Store<Point>}
  */
