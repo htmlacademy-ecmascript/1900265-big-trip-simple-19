@@ -30,8 +30,8 @@
 
 /**
  * @typedef OfferGroup
- * @prop {string} type это id
- * @prop {Offer[]} offers это items
+ * @prop {string} type
+ * @prop {Offer[]} offers
  */
 
 /**
@@ -39,4 +39,34 @@
  * @prop {number} id
  * @prop {string} title
  * @prop {number} price
+ */
+
+/**
+ * @typedef {import('./adapters/adapter').default} Adapter
+ * @typedef {import('./adapters/point-adapter').default} PointAdapter
+ * @typedef {import('./adapters/destination-adapter').default} DestinationAdapter
+ * @typedef {import('./adapters/offer-group-adapter').default} OfferGroupAdapter
+ */
+
+/**
+ * @template Item
+ * @template {Adapter} ItemAdapter
+ * @callback AdaptCallback
+ * @param {Item} [item]
+ * @return {ItemAdapter}
+ */
+
+/**
+ * @template Item
+ * @callback FilterCallback
+ * @param {Item} item
+ * @return {boolean}
+ */
+
+/**
+ * @template Item
+ * @callback SortCallback
+ * @param {Item} item
+ * @param {Item} nextItem
+ * @return {number}
  */

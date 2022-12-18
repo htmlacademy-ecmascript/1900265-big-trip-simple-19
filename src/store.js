@@ -87,7 +87,7 @@ export default class Store {
    * @param {Response} response
    */
   static parse(response) {
-    if (response.headers.get('content-type').startsWith('application.json')) {
+    if (response.headers.get('content-type').startsWith('application/json')) {
       return response.json();
     }
     return response.text();

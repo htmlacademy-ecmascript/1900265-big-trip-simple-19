@@ -16,6 +16,10 @@ export default class PointAdapter extends Adapter {
     this.type = data.type;
   }
 
+  // get startDateAsNumber() {
+  //   return Number(this.startDate);
+  // }
+
   /**
    * @override
    * @return {Partial<Point>}
@@ -25,9 +29,9 @@ export default class PointAdapter extends Adapter {
       'base_price': this.basePrice,
       'date_from': this.startDate,
       'date_to': this.endDate,
-      'destination': this.destinationId,
+      'destination': Number(this.destinationId),
       'id': this.id,
-      'offers': this.offerIds,
+      'offers': this.offerIds?.map(Number),
       'type': this.type,
     };
   }
