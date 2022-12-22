@@ -1,20 +1,36 @@
-import {FilterType, SortType} from './enums';
+import {FilterType, SortType, PointType} from './enums';
 
 /**
  * @type {Record<string,FilterCallback<PointAdapter>>}
  */
 export const filterCallbackMap = {
   [FilterType.EVERYTHING]: () => true,
-  [FilterType.FUTURE]: (item) => Date.now() <= Date.parse(item.startDate)
+  [FilterType.FUTURE]: (item) => Date.now() < Date.parse(item.endDate)
 };
 
 /**
  * @type {Record<string,SortCallback<PointAdapter>>}
  */
 export const sortCallbackMap = {
-  [SortType.DAY]: (item, nextItem) => Date.parse(item.startDate) - Date.parse(nextItem.startDate),
+  [SortType.DAY]: (item, nextItem) => item.startDateAsNumber - nextItem.startDateAsNumber,
   [SortType.EVENT]: () => 0,
   [SortType.TIME]: () => 0,
   [SortType.PRICE]: (item, nextItem) => nextItem.basePrice - item.basePrice,
   [SortType.OFFERS]: () => 0
 };
+
+export const pointTitleMap = {
+  [PointType.TAXI]: 'Taxi',
+  [PointType.BUS]: 'Bus',
+  [PointType.TRAIN]: 'Train',
+  [PointType.SHIP]: 'Ship',
+  [PointType.DRIVE]: 'Drive',
+  [PointType.FLIGHT]: 'Flight',
+  [PointType.CHECK_IN]: 'Check-in',
+  [PointType.SIGHTSEEING]: 'Sightseeing',
+  [PointType.RESTAURANT]: 'Restaurant'
+};
+
+export const pointIconMap = Object.fromEntries(
+  Object.values(PointType).map((value) => [value, `img/icons/${value}.png`])
+);
