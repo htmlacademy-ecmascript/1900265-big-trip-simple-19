@@ -1,10 +1,12 @@
-import './views/filter-view';
-import './views/sort-view';
+import FilterView from './views/filter-view';
+import SortView from './views/sort-view';
 import ListView from './views/list-view';
 import './views/point-view';
 import './views/new-point-editor-view';
 
 import ListPresenter from './presenters/list-presenter';
+import FilterPresenter from './presenters/filter-presenter';
+import SortPresenter from './presenters/sort-presenter';
 
 import Store from './store';
 import CollectionModel from './models/collection-model';
@@ -47,7 +49,9 @@ const offerGroupsModel = new CollectionModel({
 
 const models = [pointsModel, destinationsModel, offerGroupsModel];
 
+const filterView = document.querySelector(String(FilterView));
 const listView = document.querySelector(String(ListView));
+const sortView = document.querySelector(String(SortView));
 
 const {log} = console;
 
@@ -56,7 +60,8 @@ Promise.all(
 )
   .then(async () => {
     new ListPresenter(listView, models);
-
+    new FilterPresenter(filterView, models);
+    new SortPresenter(sortView, models);
   })
 
   .catch((error) => {

@@ -1,11 +1,38 @@
 import {FilterType, SortType, PointType} from './enums';
 
+export const filterTitleMap = {
+  [FilterType.EVERYTHING]: 'Everything',
+  [FilterType.FUTURE]: 'Future'
+};
+
 /**
  * @type {Record<string,FilterCallback<PointAdapter>>}
  */
 export const filterCallbackMap = {
   [FilterType.EVERYTHING]: () => true,
   [FilterType.FUTURE]: (item) => Date.now() < Date.parse(item.endDate)
+};
+
+/**
+ * @param {Object} target
+ * @param {*} value
+ */
+export const findKey = (target, value) => Object.keys(target).find((key) => target[key] === value);
+
+export const sortTitleMap = {
+  [SortType.DAY]: 'Day',
+  [SortType.EVENT]: 'Event',
+  [SortType.TIME]: 'Time',
+  [SortType.PRICE]: 'Price',
+  [SortType.OFFERS]: 'Offers'
+};
+
+export const sortDisabilityMap = {
+  [SortType.DAY]: false,
+  [SortType.EVENT]: true,
+  [SortType.TIME]: true,
+  [SortType.PRICE]: false,
+  [SortType.OFFERS]: true
 };
 
 /**
