@@ -2,11 +2,13 @@ import FilterView from './views/filter-view';
 import SortView from './views/sort-view';
 import ListView from './views/list-view';
 import './views/point-view';
-import './views/new-point-editor-view';
+import NewPointEditorView from './views/new-point-editor-view';
 
 import ListPresenter from './presenters/list-presenter';
 import FilterPresenter from './presenters/filter-presenter';
 import SortPresenter from './presenters/sort-presenter';
+import NewPointButtonPresenter from './presenters/new-point-button-presenter';
+import NewPointEditorPresenter from './presenters/new-point-editor-presenter';
 
 import Store from './store';
 import CollectionModel from './models/collection-model';
@@ -52,6 +54,8 @@ const models = [pointsModel, destinationsModel, offerGroupsModel];
 const filterView = document.querySelector(String(FilterView));
 const listView = document.querySelector(String(ListView));
 const sortView = document.querySelector(String(SortView));
+const newPointButtonView = document.querySelector('.trip-main__event-add-btn');
+const newPointEditorPresenter = new NewPointEditorView(listView);
 
 const {log} = console;
 
@@ -59,9 +63,11 @@ Promise.all(
   models.map((model) => model.ready())
 )
   .then(async () => {
-    new ListPresenter(listView, models);
     new FilterPresenter(filterView, models);
     new SortPresenter(sortView, models);
+    new ListPresenter(listView, models);
+    new NewPointButtonPresenter(newPointButtonView, models);
+    new NewPointEditorPresenter(newPointEditorPresenter, models);
   })
 
   .catch((error) => {
