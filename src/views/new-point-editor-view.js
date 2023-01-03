@@ -20,6 +20,16 @@ export default class NewPointEditorView extends View {
      * @type {ListView}
      */
     this.listView = listView;
+
+    /**
+     * @type {PointTypeView}
+     */
+    this.pointTypeView = this.querySelector(String(PointTypeView));
+
+    /**
+     * @type {DestinationView}
+     */
+    this.destinationView = this.querySelector(String(DestinationView));
   }
 
   /**
@@ -53,7 +63,7 @@ export default class NewPointEditorView extends View {
     this.remove();
     document.removeEventListener('keydown', this);
 
-    if(notify) {
+    if (notify) {
       this.dispatchEvent(new CustomEvent('close'));
     }
   }
@@ -62,7 +72,7 @@ export default class NewPointEditorView extends View {
    * @param {KeyboardEvent} event
    */
   handleEvent(event) {
-    if(event.key === 'Escape') {
+    if (event.key === 'Escape') {
       this.close();
     }
   }

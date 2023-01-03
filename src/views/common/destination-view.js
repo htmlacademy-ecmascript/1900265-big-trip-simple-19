@@ -17,12 +17,26 @@ export default class DestinationView extends View {
         Flight
       </label>
       <input class="event__input  event__input--destination" id="event-destination-1" type="text" name="event-destination" value="Geneva" list="destination-list-1">
-      <datalist id="destination-list-1">
-        <option value="Amsterdam"></option>
-        <option value="Geneva"></option>
-        <option value="Chamonix"></option>
-      </datalist>
+      <datalist id="destination-list-1"></datalist>
     `;
+  }
+
+  /**
+   * @param {OptionViewState} state
+   */
+  createOptionHtml(state) {
+    return html`
+      <option value="${state.value}"></option>
+    `;
+  }
+
+  /**
+   * @param {OptionViewState[]} states
+   */
+  setOptions(states) {
+    const optionsHtml = states.map((this.createOptionHtml)).join('');
+
+    this.querySelector('datalist').insertAdjacentHTML('beforeend', optionsHtml);
   }
 }
 
