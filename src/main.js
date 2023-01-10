@@ -1,8 +1,14 @@
-import './views/filter-view';
-import './views/sort-view';
-import './views/list-view';
+import FilterView from './views/filter-view';
+import SortView from './views/sort-view';
+import ListView from './views/list-view';
 import './views/point-view';
-import './views/new-point-editor-view';
+import NewPointEditorView from './views/new-point-editor-view';
+
+import ListPresenter from './presenters/list-presenter';
+import FilterPresenter from './presenters/filter-presenter';
+import SortPresenter from './presenters/sort-presenter';
+import NewPointButtonPresenter from './presenters/new-point-button-presenter';
+import NewPointEditorPresenter from './presenters/new-point-editor-presenter';
 
 import Store from './store';
 import CollectionModel from './models/collection-model';
@@ -13,7 +19,7 @@ import {FilterType, SortType} from './enums';
 import {filterCallbackMap, sortCallbackMap} from './maps';
 
 const BASE = 'https://19.ecmascript.pages.academy/big-trip-simple';
-const AUTH = 'Basic someString13dfgdfg';
+const AUTH = 'Basic someString13kjh';
 /**
  * @type {Store<Point>}
  */
@@ -45,40 +51,23 @@ const offerGroupsModel = new CollectionModel({
 
 const models = [pointsModel, destinationsModel, offerGroupsModel];
 
-const {log, table} = console;
+const filterView = document.querySelector(String(FilterView));
+const listView = document.querySelector(String(ListView));
+const sortView = document.querySelector(String(SortView));
+const newPointButtonView = document.querySelector('.trip-main__event-add-btn');
+const newPointEditorPresenter = new NewPointEditorView(listView);
+
+const {log} = console;
 
 Promise.all(
   models.map((model) => model.ready())
 )
   .then(async () => {
-    table(pointsModel.list());
-
-    // log('Points', pointsModel.listAll());
-    // log('Points: item', pointsModel.item(0));
-    // log('Points: findIndexBy', pointsModel.findIndexBy('basePrice', 300));
-    // log('Points: findIndexById', pointsModel.findIndexById('0'));
-    // log('Destinations', destinationsModel.listAll());
-    // log('Offer groups', offerGroupsModel.listAll());
-    // const logEvent = (event) => log(event.type, event.detail);
-
-    // pointsModel.addEventListener('add', logEvent);
-    // pointsModel.addEventListener('update', logEvent);
-
-    // const item = pointsModel.item();
-
-    // item.basePrice = 100;
-    // item.startDate = new Date().toJSON();
-    // item.endDate = item.startDate;
-    // item.destinationId = '1';
-    // item.offerIds = [];
-    // item.type = 'bus';
-
-    // const addedItem = await pointsModel.add(item);
-
-    // addedItem.basePrice = 200;
-    // addedItem.type = 'taxi';
-
-    // await pointsModel.update(addedItem);
+    new FilterPresenter(filterView, models);
+    new SortPresenter(sortView, models);
+    new ListPresenter(listView, models);
+    new NewPointButtonPresenter(newPointButtonView, models);
+    new NewPointEditorPresenter(newPointEditorPresenter, models);
   })
 
   .catch((error) => {

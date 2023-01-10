@@ -19,6 +19,8 @@ export default class CollectionModel extends Model {
    * @param {Object} setup
    * @param {Store<Item>} setup.store
    * @param {AdaptCallback<Item,ItemAdapter>} setup.adapt
+   * @param {FilterCallback<ItemAdapter>} [setup.filter]
+   * @param {SortCallback<ItemAdapter>} [setup.sort]
    */
   constructor(setup) {
     super();
@@ -82,7 +84,7 @@ export default class CollectionModel extends Model {
    */
   item(index) {
     if (arguments.length) {
-      const item = this.#items [index];
+      const item = this.#items[index];
 
       return item && this.#adapt(item);
     }
@@ -151,10 +153,14 @@ export default class CollectionModel extends Model {
    * @param {string} id
    */
   async delete(id) {
-    // TODO: Написать реализацию
-    const newId = this.findById(id);
+    await this.#store.delete(id);
 
-    const detail = this.#items.slice(0, newId);
+    const index = this.findIndexById(id);
+    const detail = this.item(index);
+
+    this.#items.splice(index, 1);
     this.dispatchEvent(new CustomEvent('delete', {detail}));
+
+    return detail;
   }
 }
