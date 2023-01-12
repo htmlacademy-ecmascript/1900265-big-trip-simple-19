@@ -40,6 +40,12 @@ export default class NewPointEditorView extends View {
      * @type {DestinationDetailsView}
      */
     this.destinationDetailsView = this.querySelector(String(DestinationDetailsView));
+
+    /**
+     * @type {BasePriceView}
+     */
+    this.basePriceView = this.querySelector(String(BasePriceView));
+
   }
 
   /**

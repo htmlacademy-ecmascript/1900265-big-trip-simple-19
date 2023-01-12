@@ -33,9 +33,11 @@ export default class NewPointEditorPresenter extends Presenter {
    */
   updateView(point) {
     const destination = this.destinationsModel.findById(point.destinationId);
+
     this.view.pointTypeView.setValue(point.type);
     this.view.destinationView.setLabel(pointTitleMap[point.type]);
     this.view.destinationView.setValue(destination.name);
+
     this.updateOffersView(point.offerIds);
     this.updateDestinationDetailsView(destination);
   }
@@ -59,8 +61,8 @@ export default class NewPointEditorPresenter extends Presenter {
   }
 
   /**
- * @param {DestinationAdapter} [destination]
- */
+   * @param {DestinationAdapter} [destination]
+   */
   updateDestinationDetailsView(destination) {
     this.view.destinationDetailsView.hidden = !destination;
 

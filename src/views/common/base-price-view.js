@@ -17,8 +17,19 @@ export default class BasePriceView extends View {
         <span class="visually-hidden">Price</span>
         &euro;
       </label>
-      <input class="event__input  event__input--price" id="event-price-1" type="text" name="event-price" value="">
+      <input class="event__input  event__input--price" id="event-price-1" type="text" name="event-price">
     `;
+  }
+
+  /**
+   * @param {number} value
+   */
+  setValue(value) {
+    this.querySelector('input').value = `${value}`;
+  }
+
+  getValue() {
+    return this.querySelector('input').valueAsNumber;
   }
 }
 
