@@ -79,6 +79,7 @@
 
 /**
  * @typedef PointViewState
+ * @prop {string} id
  * @prop {string} date
  * @prop {string} icon
  * @prop {string} title
@@ -115,4 +116,9 @@
  * @prop {string} title
  * @prop {string} price
  * @prop {boolean} checked
+ */
+
+/**
+ * @typedef {import('flatpickr/dist/types/instance').Instance} Calendar
+ * @typedef {import('flatpickr/dist/types/options').Options} CalendarConfig
  */
