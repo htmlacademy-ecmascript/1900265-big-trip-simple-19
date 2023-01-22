@@ -4,7 +4,8 @@ import {formatNumber} from '../utils';
 import Presenter from './presenter';
 
 /**
- * @extends {Presenter<NewPointEditorView>}
+ * @template {NewPointEditorView} View
+ * @extends {Presenter<View>}
  */
 export default class NewPointEditorPresenter extends Presenter {
   constructor() {
