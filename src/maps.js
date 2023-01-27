@@ -13,6 +13,11 @@ export const filterCallbackMap = {
   [FilterType.FUTURE]: (item) => Date.now() < Date.parse(item.endDate)
 };
 
+export const emptyTitleMap = {
+  [FilterType.EVERYTHING]: 'Click New Event to create your first point',
+  [FilterType.FUTURE]: 'There are no future events now'
+};
+
 /**
  * @param {Object} target
  * @param {*} value
@@ -65,4 +70,9 @@ export const pointIconMap = Object.fromEntries(
 export const saveButtonTextMap = {
   [ButtonState.DEFAULT]: 'Save',
   [ButtonState.PRESSED]: 'Saving...'
+};
+
+export const deleteButtonTextMap = {
+  [ButtonState.DEFAULT]: 'Delete',
+  [ButtonState.PRESSED]: 'Deleting...'
 };

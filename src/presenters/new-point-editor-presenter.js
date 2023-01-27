@@ -81,6 +81,13 @@ export default class NewPointEditorPresenter extends Presenter {
   }
 
   /**
+   * @param {PointAdapter} point
+   */
+  async save(point) {
+    await this.pointsModel.add(point);
+  }
+
+  /**
    * @override
    */
   handleNavigation() {
@@ -122,13 +129,19 @@ export default class NewPointEditorPresenter extends Presenter {
       point.basePrice = this.view.basePriceView.getValue();
       point.offerIds = this.view.offersView.getValues();
 
-      await this.pointsModel.add(point);
+      await this.save(point);
 
       this.view.close();
     }
 
     catch (exception) {
       this.view.shake();
+
+      if (exception.cause?.error) {
+        const [{fieldName}] = exception.cause.error;
+
+        this.view.findByName(fieldName)?.focus();
+      }
     }
 
     this.view.awaitSave(false);
@@ -136,7 +149,12 @@ export default class NewPointEditorPresenter extends Presenter {
     this.view.close();
   }
 
-  handleViewReset() {
+  /**
+   * @param {Event} event
+   */
+  handleViewReset(event) {
+    event.preventDefault();
+
     this.view.close();
   }
 

@@ -9,8 +9,8 @@ export default class PointEditorPresenter extends NewPointEditorPresenter {
   }
 
   /**
- * @override
- */
+  * @override
+  */
   handleNavigation() {
     this.view.close(false);
 
@@ -22,5 +22,43 @@ export default class PointEditorPresenter extends NewPointEditorPresenter {
       this.view.open();
       this.updateView(point);
     }
+  }
+
+  /**
+   * @override
+   * @param {PointAdapter} point
+   */
+  async save(point) {
+    point.id = this.view.dataset.id;
+
+    await this.pointsModel.update(point);
+  }
+
+  /**
+   * @override
+   * @param {Event} event
+   */
+  async handleViewReset(event) {
+    event.preventDefault();
+
+    this.view.awaitDelete(true);
+
+    try {
+      const pointId = this.view.dataset.id;
+
+      await this.pointsModel.delete(pointId);
+
+      this.view.close();
+    }
+
+    catch (exception) {
+      this.view.shake();
+    }
+
+    this.view.awaitDelete(false);
+  }
+
+  handleViewClose() {
+    this.navigate('/');
   }
 }

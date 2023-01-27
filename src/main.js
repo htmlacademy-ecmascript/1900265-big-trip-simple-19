@@ -5,9 +5,10 @@ import './views/point-view';
 import NewPointEditorView from './views/new-point-editor-view';
 import PointEditorView from './views/point-editor-view';
 
-import ListPresenter from './presenters/list-presenter';
 import FilterPresenter from './presenters/filter-presenter';
 import SortPresenter from './presenters/sort-presenter';
+import ListPresenter from './presenters/list-presenter';
+import EmptyListPresenter from './presenters/empty-list-presenter';
 import NewPointButtonPresenter from './presenters/new-point-button-presenter';
 import NewPointEditorPresenter from './presenters/new-point-editor-presenter';
 import PointEditorPresenter from './presenters/point-editor-presenter';
@@ -54,8 +55,9 @@ const offerGroupsModel = new CollectionModel({
 const models = [pointsModel, destinationsModel, offerGroupsModel];
 
 const filterView = document.querySelector(String(FilterView));
-const listView = document.querySelector(String(ListView));
 const sortView = document.querySelector(String(SortView));
+const listView = document.querySelector(String(ListView));
+const emptyListView = document.querySelector('.trip-events__msg');
 const newPointButtonView = document.querySelector('.trip-main__event-add-btn');
 const newPointEditorView = new NewPointEditorView(listView);
 const pointEditorView = new PointEditorView(listView);
@@ -69,6 +71,7 @@ Promise.all(
     new FilterPresenter(filterView, models);
     new SortPresenter(sortView, models);
     new ListPresenter(listView, models);
+    new EmptyListPresenter(emptyListView, models);
     new NewPointButtonPresenter(newPointButtonView, models);
     new NewPointEditorPresenter(newPointEditorView, models);
     new PointEditorPresenter(pointEditorView, models);
