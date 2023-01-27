@@ -1,5 +1,5 @@
 import Presenter from './presenter';
-import {emptyTitleMap, filterCallbackMap} from '../maps';
+import {emptyListMap, filterCallbackMap} from '../maps';
 import {findKey} from '../utils';
 
 /**
@@ -20,8 +20,8 @@ export default class EmptyListPresenter extends Presenter {
     const filter = this.pointsModel.getFilter();
     const filterType = findKey(filterCallbackMap, filter);
 
-    this.view.hidden = (this.location.pathname === '/new') || Boolean(points.length);
-    this.view.textContent = emptyTitleMap[filterType];
+    this.view.hidden = Boolean((this.location.pathname === '/new') || (points.length));
+    this.view.textContent = emptyListMap[filterType];
   }
 
   /**

@@ -17,6 +17,7 @@ export default class FilterPresenter extends Presenter {
     this.updateViewDisability();
 
     this.view.addEventListener('change', this.handleViewChange.bind(this));
+
     this.pointsModel.addEventListener('add', this.handlePointsModelAdd.bind(this));
     this.pointsModel.addEventListener('update', this.handlePointsModelUpdate.bind(this));
     this.pointsModel.addEventListener('delete', this.handlePointsModelDelete.bind(this));
@@ -50,7 +51,7 @@ export default class FilterPresenter extends Presenter {
   handleViewChange() {
     const filterType = this.view.getValue();
 
-    this.navigate('/');
+    // this.navigate('/');
     this.pointsModel.setFilter(filterCallbackMap[filterType]);
   }
 

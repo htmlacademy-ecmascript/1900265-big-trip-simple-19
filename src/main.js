@@ -23,6 +23,7 @@ import {filterCallbackMap, sortCallbackMap} from './maps';
 
 const BASE = 'https://19.ecmascript.pages.academy/big-trip-simple';
 const AUTH = 'Basic someString13kjh';
+
 /**
  * @type {Store<Point>}
  */
@@ -30,7 +31,7 @@ const pointsStore = new Store(`${BASE}/points`, AUTH);
 const pointsModel = new CollectionModel({
   store: pointsStore,
   adapt: (item) => new PointAdapter(item),
-  filter: filterCallbackMap[FilterType.FUTURE],
+  filter: filterCallbackMap[FilterType.EVERYTHING],
   sort: sortCallbackMap[SortType.DAY]
 });
 
@@ -62,12 +63,10 @@ const newPointButtonView = document.querySelector('.trip-main__event-add-btn');
 const newPointEditorView = new NewPointEditorView(listView);
 const pointEditorView = new PointEditorView(listView);
 
-const {log} = console;
-
 Promise.all(
   models.map((model) => model.ready())
 )
-  .then(async () => {
+  .then(() => {
     new FilterPresenter(filterView, models);
     new SortPresenter(sortView, models);
     new ListPresenter(listView, models);
@@ -77,6 +76,6 @@ Promise.all(
     new PointEditorPresenter(pointEditorView, models);
   })
 
-  .catch((error) => {
-    log(error);
+  .catch((exception) => {
+    emptyListView.textContent = exception;
   });

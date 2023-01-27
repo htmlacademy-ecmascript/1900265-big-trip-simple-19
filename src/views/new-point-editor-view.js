@@ -6,7 +6,7 @@ import DatesView from './common/dates-view';
 import BasePriceView from './common/base-price-view';
 import OffersView from './common/offers-view';
 import DestinationDetailsView from './common/destination-details-view';
-import { saveButtonTextMap } from '../maps';
+import {saveButtonTextMap} from '../maps';
 import UiBlockerView from './ui-blocker-view';
 
 /**
@@ -82,13 +82,16 @@ export default class NewPointEditorView extends View {
 
   open() {
     this.listView.prepend(this);
-    document.addEventListener('keydown', this);
     this.datesView.createCalendars();
+    this.fadeInRight();
+
+    document.addEventListener('keydown', this);
   }
 
   close(notify = true) {
     this.remove();
     this.datesView.destroyCalendars();
+
     document.removeEventListener('keydown', this);
 
     if (notify) {
