@@ -13,7 +13,7 @@ export const filterCallbackMap = {
   [FilterType.FUTURE]: (item) => Date.now() < Date.parse(item.endDate)
 };
 
-export const emptyTitleMap = {
+export const emptyListMap = {
   [FilterType.EVERYTHING]: 'Click New Event to create your first point',
   [FilterType.FUTURE]: 'There are no future events now'
 };
