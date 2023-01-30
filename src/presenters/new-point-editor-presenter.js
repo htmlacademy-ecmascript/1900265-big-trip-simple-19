@@ -95,11 +95,8 @@ export default class NewPointEditorPresenter extends Presenter {
       const point = this.pointsModel.item();
 
       point.type = PointType.TAXI;
-      point.destinationId = undefined;
-      point.startDate = '';
-      point.endDate = '';
-      point.basePrice = undefined;
-      point.offerIds = [];
+      point.startDate = new Date().toJSON();
+      point.endDate = point.startDate;
 
       this.view.open();
       this.updateView(point);
