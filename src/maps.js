@@ -18,12 +18,6 @@ export const emptyListMap = {
   [FilterType.FUTURE]: 'There are no future events now'
 };
 
-/**
- * @param {Object} target
- * @param {*} value
- */
-export const findKey = (target, value) => Object.keys(target).find((key) => target[key] === value);
-
 export const sortTitleMap = {
   [SortType.DAY]: 'Day',
   [SortType.EVENT]: 'Event',
