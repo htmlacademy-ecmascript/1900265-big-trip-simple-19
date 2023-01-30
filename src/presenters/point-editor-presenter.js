@@ -44,8 +44,6 @@ export default class PointEditorPresenter extends NewPointEditorPresenter {
     this.view.awaitDelete(true);
 
     try {
-      // const pointId = this.view.dataset.id;
-      // await this.pointsModel.delete(pointId);
       await this.pointsModel.delete(this.view.dataset.id);
 
       this.view.close();
