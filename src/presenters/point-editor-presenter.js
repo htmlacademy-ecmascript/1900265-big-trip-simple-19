@@ -4,10 +4,6 @@ import NewPointEditorPresenter from './new-point-editor-presenter';
  * @extends {NewPointEditorPresenter<PointEditorView>}
  */
 export default class PointEditorPresenter extends NewPointEditorPresenter {
-  constructor() {
-    super(...arguments);
-  }
-
   /**
    * @override
    * @param {PointAdapter} point
@@ -48,9 +44,9 @@ export default class PointEditorPresenter extends NewPointEditorPresenter {
     this.view.awaitDelete(true);
 
     try {
-      const pointId = this.view.dataset.id;
-
-      await this.pointsModel.delete(pointId);
+      // const pointId = this.view.dataset.id;
+      // await this.pointsModel.delete(pointId);
+      await this.pointsModel.delete(this.view.dataset.id);
 
       this.view.close();
     }
