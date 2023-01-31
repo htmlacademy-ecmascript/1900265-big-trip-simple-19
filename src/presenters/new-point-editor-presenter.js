@@ -142,8 +142,6 @@ export default class NewPointEditorPresenter extends Presenter {
     }
 
     this.view.awaitSave(false);
-
-    this.view.close();
   }
 
   /**
